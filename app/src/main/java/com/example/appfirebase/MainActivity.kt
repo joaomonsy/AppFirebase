@@ -50,10 +50,10 @@ fun App(db: FirebaseFirestore) {
     var nome by remember {
         mutableStateOf("")
     }
-    var telefone by remember {
+    var matricula by remember {
         mutableStateOf("")
     }
-    var idade by remember {
+    var turma by remember {
         mutableStateOf("")
     }
     Column(
@@ -71,7 +71,7 @@ fun App(db: FirebaseFirestore) {
                 .fillMaxWidth(),
             Arrangement.Center
         ) {
-            Text(text = "App Firebase Firestore João Lucas 3 DS")
+            Text(text = "João Lucas 3 DS 2024")
         }
         Row(
             Modifier
@@ -105,13 +105,13 @@ fun App(db: FirebaseFirestore) {
                 Modifier
                     .fillMaxWidth(0.3f)
             ) {
-                Text(text = "Telefone:")
+                Text(text = "Matrícula:")
             }
             Column(
             ) {
                 TextField(
-                    value = telefone,
-                    onValueChange = { telefone = it }
+                    value = matricula,
+                    onValueChange = { matricula = it }
                 )
             }
         }
@@ -123,13 +123,13 @@ fun App(db: FirebaseFirestore) {
                 Modifier
                     .fillMaxWidth(0.3f)
             ) {
-                Text(text = "Idade:")
+                Text(text = "Turma:")
             }
             Column(
             ) {
                 TextField(
-                    value = idade,
-                    onValueChange = { idade = it }
+                    value = turma,
+                    onValueChange = { turma = it }
                 )
             }
         }
@@ -145,14 +145,14 @@ fun App(db: FirebaseFirestore) {
             Arrangement.Center
         ) {
             Button(onClick = {
-                val city = hashMapOf(
+                val aluno = hashMapOf(
                     "nome" to nome,
-                    "telefone" to telefone,
-                    "idade" to idade
+                    "matricula" to matricula,
+                    "turma" to turma
                 )
 
-                db.collection("Pessoa").document("PrimeiraPessoa")
-                    .set(city)
+                db.collection("Aluno").document("CadastroAluno")
+                    .set(aluno)
                     .addOnSuccessListener {
                         Log.d(ContentValues.TAG, "DocumentSnapshot successfully written!")
                     }
